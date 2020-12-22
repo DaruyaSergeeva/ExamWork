@@ -21,7 +21,7 @@ namespace ExamProject
         public string Patronymic;
         public int Age;
         public int SpendMoney = 0;
-        public int BuyService = 0;
+        public int BuyService;
 
         public string Fio
         {
@@ -29,9 +29,9 @@ namespace ExamProject
             {
                 if (Sex == Sex.Female)
                 {
-                    return "Уважаемая " + LastName + " " + Name + " " + Patronymic;
+                    return "Уважаемая " + LastName + " " + Name + " " + Patronymic + " ,возраст " + Age;
                 }
-                return "Уважаемый " + LastName + " " + Name + " " + Patronymic;
+                return "Уважаемый " + LastName + " " + Name + " " + Patronymic + " ,возраст " + Age;
             }
             set {
                 FIO = value;
@@ -72,31 +72,18 @@ namespace ExamProject
 
         public int CompareTo(object client1)
         {
-            Client client2 = (Client)client1;
-            if (this.BuyService < client2.BuyService)
+            Client client2 = client1 as Client;
+            var comp = BuyService.CompareTo(client2.BuyService);
+            var age = Age.CompareTo(client2.Age);
+            if (comp == 0)
             {
-                return 1;
-            }
-            else if (this.BuyService == client2.BuyService)
-            {
-                if (this.Age < client2.Age)
-                {
-                    return 1;
-                }
-                else if (this.Age == client2.Age)
-                {
-                    return 0;
-                }
-                else
-                {
-                    return -1;
-                }
+              return age;
             }
             else
-            {
-                return -1;
-            }
+            
+                return comp;
+            
+                
         }
-        
     }
 }

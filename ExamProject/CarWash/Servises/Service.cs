@@ -6,24 +6,12 @@ namespace ExamProject.CarWash.Servises
 {
     class Service
     {
+        public string Name;
         public int Price;
-        public DateTime Time;
-        public Staff Staff;
-        public Client Client;
-        public Service(Client client,Staff staff, DateTime time)
+        public Service(string name, int price)
         {
-            Time = time;
-            
-            Client = client;
-            Staff = staff;
-        }
-
-        public void DoWork()
-        {
-
-            Staff.DoneWork++;
-            Client.SpendMoney += Price;
-            Client.BuyService++;
+            Name = name;
+            Price = price;
         }
     }
 }
